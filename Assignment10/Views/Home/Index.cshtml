@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IndexViewModel
+
+@if (Model.TeamName != null)
+{
+    <h3>@Model.TeamName</h3><br />
+}
+else 
+{ 
+    <h3>Bowling League Participants</h3><br />
+}
+
+
+@foreach (var x in Model.Bowlers)
+{
+<div class="card card-outline-primary m-1 p-1">
+    <!--This will make it so that we can click on the book title to see the collapsed informaiton-->
+    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+        <h4>
+            @x.BowlerFirstName @x.BowlerMiddleInit @x.BowlerLastName
+        </h4>
+    </a>
+    <!--Made a collapsable pill so that all the information is not instantly clicked on but it can be seen if you click on one to open-->
+    <div class="row">
+        <div class="col">
+            <!--MAke this collapsable so that you have to have the inforamtion appear by clicking on the book title-->
+            <div class="panel-collapse collapse" id="multiCollapseExample1">
+                <div class="panel-body">
+                    <p>Address: @x.BowlerAddress</p>
+                    <p>City: @x.BowlerCity</p>
+                    <p>State: @x.BowlerState</p>
+                    <p>Zip: @x.BowlerZip</p>
+                    <p>Phone Number: @x.BowlerPhoneNumber</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div page-info="@Model.PageNumberingInfo"
+     page-url-teamname="@Model.TeamName">
+    
+</div>

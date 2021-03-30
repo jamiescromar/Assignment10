@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Teams>
+<!--is a var because we are passing in the whole object-->
+<!--This will make it so we have the functionality of viewing the whole list without a category-->
+<a class="btn btn-block @(ViewBag.ChosenTeam == null ? "btn-primary" : "btn-outline-secondary")" asp-action="Index" asp-controller="Home" asp-route-teamid="">Home</a>
+<br />
+@foreach (var x in Model)
+{
+    //This makes them links, we can also make them buttons, jsut need to figure out what they link too which is where the Href comes into play
+    //The controller needs to know which one to select
+    //Pass out the meal type
+    //asp-route will help us to use the categorys int eh endpoints
+    //whatever comes after asp-route is waht you need to pass into the constructor
+    <a class="btn btn-block @(x.TeamName ==ViewBag.ChosenTeam ? "btn-primary" : "btn-outline-secondary")" asp-action="Index" asp-controller="Home" asp-route-teamid="@x.TeamId" asp-route-teamname ="@x.TeamName">@x.TeamName</a>
+    <br />
+}
